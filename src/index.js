@@ -1,14 +1,12 @@
 console.log('%c HI', 'color: firebrick')
     // Challenge 1
-document.addEventListener('DOMContentLoaded', function() {
-    fetchUrl(imgUrl)
-    fetchUrl2();
-    makeLiOfThem(dogs)
-});
+    // document.addEventListener('DOMContentLoaded', function() {
+
+
+// });
 
 let dogs = []
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
-
 async function fetchUrl(url) {
     const response = await fetch(url)
     const json = await response.json()
@@ -53,6 +51,20 @@ function makeLiOfThem(dogs) {
     breedList.forEach(breed => {
         breed.addEventListener("click", changeColor)
     })
+
+
+    document.querySelector("#breed-dropdown").addEventListener("change", function(e) {
+        document.querySelector("#dog-breeds").innerHTML = ""
+        dogs.forEach(dog => {
+            if (e.target.value == dog[0]) {
+                document.querySelector("#dog-breeds").innerHTML += `
+                <li class="breed-li">${dog}</li>
+            `
+            } else {
+                console.log("no")
+            }
+        })
+    })
 }
 
 function changeColor(e) {
@@ -63,4 +75,6 @@ function changeColor(e) {
 
 
 
-makeLiOfThem(jsonStuff)
+fetchUrl(imgUrl)
+fetchUrl2()
+makeLiOfThem(dogs)
