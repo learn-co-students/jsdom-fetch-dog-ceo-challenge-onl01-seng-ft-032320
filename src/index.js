@@ -47,10 +47,6 @@ function makeLiOfThem(dogs) {
             `
         })
         // Challenge 3 
-    const breedList = document.querySelectorAll(".breed-li")
-    breedList.forEach(breed => {
-        breed.addEventListener("click", changeColor)
-    })
 
 
     document.querySelector("#breed-dropdown").addEventListener("change", function(e) {
@@ -58,12 +54,20 @@ function makeLiOfThem(dogs) {
         dogs.forEach(dog => {
             if (e.target.value == dog[0]) {
                 document.querySelector("#dog-breeds").innerHTML += `
-                <li class="breed-li">${dog}</li>
-            `
+                    <li class="breed-li">${dog}</li>
+                    `
             } else {
                 console.log("no")
             }
+            changeLiCol()
         })
+    })
+}
+
+function changeLiCol() {
+    const breedList = document.querySelectorAll(".breed-li")
+    breedList.forEach(breed => {
+        breed.addEventListener("click", changeColor)
     })
 }
 
