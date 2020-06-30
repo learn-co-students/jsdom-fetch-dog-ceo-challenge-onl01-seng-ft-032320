@@ -56,7 +56,6 @@ function ddFilter() {
   }
   
   function filterBreeds(letter) {
-    filteredBreeds = [];
     filteredBreeds = allBreeds.filter(breed => breed[0] === letter);
     addBreeds(filteredBreeds);
   }
