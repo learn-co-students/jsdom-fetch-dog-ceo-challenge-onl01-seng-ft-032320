@@ -1,12 +1,12 @@
 function getDogs() {
     fetch("https://dog.ceo/api/breeds/image/random/4")
-      .then(function(response) {
-            return response.json();
-      })
-      .then(function(json){
-      renderDogs(json)
-  })
-  }
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(json){
+    renderDogs(json)
+    })
+}
   
   function renderDogs(dogs) {
       
@@ -20,60 +20,87 @@ function getDogs() {
 
   //Challenge 2
 
-  function getBreeds() {
-    fetch("https://dog.ceo/api/breeds/list/all")
-      .then(function(response) {
+    function getBreeds() {
+        fetch("https://dog.ceo/api/breeds/list/all")
+        .then(function(response) {
             return response.json();
-      })
-      .then(function(json){
-          let data = json['message'];
-          let breeds = Object.keys(data)
-      renderBreeds(breeds)
-  })
-  }
+        })
+        .then(function(json){
+            let data = json['message'];
+            let breeds = Object.keys(data)
+            renderBreeds(breeds)
+        })
+    }
   
-  function renderBreeds(breeds) {
-      
-    let ul = document.getElementById('dog-breeds')
-    breeds.forEach(breed => {
-      const li = document.createElement('li')
-      li.id = breed
-      li.innerHTML = breed
-      ul.appendChild(li)
-    })
-  }
+    function renderBreeds(breeds) {
+        let ul = document.getElementById('dog-breeds')
+        breeds.forEach(breed => {
+            const li = document.createElement('li')
+            li.id = breed
+            li.innerHTML = breed
+            ul.appendChild(li)
+        })
+    }
 
 
   
 document.addEventListener('DOMContentLoaded', function() {
     getDogs(); getBreeds(); makeList(); dropdown()
-  })
+})
   
 //challenge 3
-  function makeList(){
-    let breedList = document.getElementById('dog-breeds')
-    breedList.addEventListener('click', function(event) {
-    console.log(`You just clicked on the ${event.target.id}!`);
-    let newDog = document.getElementById(event.target.id);
-        if (newDog.style['color']=== "blue"){
-            newDog.style ="color:red"
-        }
-        else {
-            newDog.style ="color:blue"
-        };
-        
-    });
-  };
+    function makeList(){
+        let breedList = document.getElementById('dog-breeds')
+        breedList.addEventListener('click', function(event) {
+        console.log(`You just clicked on the ${event.target.id}!`);
+        let newDog = document.getElementById(event.target.id);
+            if (newDog.style['color']=== "blue"){
+                newDog.style ="color:red"
+            }
+            else {
+                newDog.style ="color:blue"
+            };
+            
+        });
+    };
 
   //challenge 4 filter by dropdown
-  function dropdown (){
-  let dropDown = document.getElementById('breed-dropdown')
-  dropDown.addEventListener('click', function(event){
-    console.log(`testing to see if ${event.target.value} appears`)
-  });
-  //1. event listener on button
-  //2. take button value, use as filter
-  //3. 
-  };
+    function dropdown (){
+        let button = document.getElementById('breed-dropdown')
+        button.addEventListener('input', event => {
+            event.preventDefault();
+            magicWord = event.target.value;
+            console.log(event.target.value);
+            alphaSort(magicWord)
+
+         
+        })
+            
+        
+    };
+
+    function alphaSort(magicWord) {
+        let ul = document.getElementById('dog-breeds');
+        let li = ul.getElementsByTagName('li');
+        for (var i = 0; i < li.length; i++) {
+            var txt = li[i].textContent || li[i].innerText;
+            var include = txt.startsWith(magicWord);
+            li[i].style.display = include ? 'list-item':'none';
+        }
+    };
 
 console.log('%c HI', 'color: firebrick')
+
+
+   // if (event.target.value === "a"){
+
+            // }
+            // else if (event.target.value === "b"){
+
+            // }
+            // else if (event.target.value === "c"){
+                
+            // }
+            // else if (event.target.value === "d"){
+                
+            // }
