@@ -64,4 +64,5 @@ function alphaSort(magicWord) {
         var include = txt.startsWith(magicWord);
         li[i].style.display = include ? 'list-item':'none';
     }
+    
 };
